@@ -1,17 +1,22 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.4
+@version        2021.3.2
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @preprocessor   stylus
 
 @var checkbox showLikes "Likes Enabled" 1
+@var checkbox showLogoInMenu "Show Logo in Menu" 0
+@var color themePrimary "Theme Primary Color" hsla(225, 45%, 45%, 1)
+@var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
 ==/UserStyle== */
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root 
-    --theme-color-secondary-top: hsla(225, 45%, 45%, 1) !important
-    --theme-color-secondary-bottom: hsla(225, 45%, 45%, 1) !important
+    --theme-color-primary-top: themePrimary !important
+    --theme-color-primary-bottom: themePrimary !important
+    --theme-color-secondary-top: themeAccent !important
+    --theme-color-secondary-bottom: themeAccent !important
 
   @media only screen and (min-width: 1024px) 
     html 
@@ -48,6 +53,15 @@
 
   flip-post-feed .post 
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 20%), 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%) !important
+    
+  .menu-content
+    .menu-item-wrapper
+      grid-gap: 12px !important
+    if !showLogoInMenu
+      padding-top: 16px
+      .menu-content__logo
+        display: none !important
+    
 
   flip-post 
     .post-article__like-count 
