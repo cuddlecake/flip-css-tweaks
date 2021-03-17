@@ -1,12 +1,15 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.2
+@version        2021.3.3
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
-==/UserStyle== */
+@preprocessor   stylus
 
+@var checkbox showLikes "Likes Enabled" 1
+==/UserStyle== */
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") {
+
   :root {
     --theme-color-secondary-top: hsla(225, 45%, 45%, 1) !important;
     --theme-color-secondary-bottom: hsla(225, 45%, 45%, 1) !important;
@@ -50,15 +53,48 @@
     max-width: 1600px !important;
   }
 
-  flip-chat flip-page.bg-default {
-    background: hsla(235, 5%, 95%, 1) !important;
+  flip-page.bg-default {
+    background: hsla(235, 5%, 96%, 1) !important;
+  }
+
+  flip-post-feed .post {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 20%), 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%) !important;
+  }
+
+  flip-post {
+    if !showLikes {
+      .post-footer {
+        justify-content: flex-end !important;
+      }
+      .post-article__like-count {
+        display: none !important;
+      }
+      button[data-cy="like-button"] {
+        display: none !important;
+      }
+    }
+  }
+
+  flip-post .post-article__like-count {
+    if !showLikes {
+      display: none !important;
+      button[data-cy="like-button"] {
+        display: none !important;
+      }
+    }
   }
 
   flip-chat flip-message .message__bubble {
     box-shadow: none !important;
   }
 
+  flip-chat flip-message .message__bubble:not(.message__bubble--from-me) .message__content {
+    color: hsla(225, 100%, 5%, 1) !important;
+  }
+
   flip-chat flip-message .message__bubble:not(.message__bubble--from-me) {
-    background: hsla(225, 5%, 90%, 1) !important;
+    border: 1px solid;
+    color: hsla(225, 4%, 89%, 1) !important;
+    background: hsla(225, 2%, 92%, 1) !important;
   }
 }
