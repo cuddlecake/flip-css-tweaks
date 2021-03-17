@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.1
+@version        2021.3.2
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 ==/UserStyle== */
@@ -11,7 +11,7 @@
     --theme-color-secondary-top: hsla(225, 45%, 45%, 1) !important;
     --theme-color-secondary-bottom: hsla(225, 45%, 45%, 1) !important;
   }
-  
+
   @media only screen and (min-width: 1024px) {
     html {
       max-width: 1200px;
@@ -19,44 +19,46 @@
       margin-right: auto;
       background: rgba(0, 0, 0, 0.8);
     }
-    
+
     .combined-view {
       position: initial;
     }
-    
+
     .combined-view .detail-container {
       width: 100% !important;
       flex: 1 1 auto;
     }
-    
-    .cdk-overlay-container {
-      max-width: 1200px;
-      position: initial;
-      margin-left: auto;
-      margin-right: auto;
+
+    .full-screen-dialog {
+      top: 10%;
+      max-width: 800px !important;
+      bottom: 10%;
+      max-height: 80vh;
+    }
+
+    .full-screen-dialog flip-page {
+      height: 100%;
+    }
+
+    .full-screen-dialog .mat-dialog-container {
+      border-radius: 8px;
     }
   }
-  
+
+
   body {
     max-width: 1600px !important;
   }
-  
+
   flip-chat flip-page.bg-default {
     background: hsla(235, 5%, 95%, 1) !important;
   }
-  
+
   flip-chat flip-message .message__bubble {
     box-shadow: none !important;
   }
-  
+
   flip-chat flip-message .message__bubble:not(.message__bubble--from-me) {
     background: hsla(225, 5%, 90%, 1) !important;
-  }
-  flip-chat flip-message .message__bubble:not(.message__bubble--from-me) .message__content { 
-    color: hsla(232, 65%, 7%, 1) !important;
-  }
-  
-  flip-chat flip-message .message__bubble.message__bubble--from-me {
-    background: hsla(225, 45%, 45%, 1) !important;
   }
 }
