@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.9
+@version        2021.3.10
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -12,14 +12,56 @@
 @var checkbox showLogoInMenu "Show Logo in Menu" 0
 @var color themePrimary "Theme Primary Color" hsla(225, 45%, 45%, 1)
 @var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
+@var checkbox isDark "Activate Dark Theme" 0
 ==/UserStyle== */
-
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root 
-    --theme-color-primary-top: themePrimary !important
-    --theme-color-primary-bottom: themePrimary !important
-    --theme-color-secondary-top: themeAccent !important
-    --theme-color-secondary-bottom: themeAccent !important
+    if isDark
+      --theme-color-primary-top: hsla(225, 55%, 50%, 1) !important
+      --theme-color-primary-bottom: hsla(225, 55%, 50%, 1) !important
+      --theme-color-secondary-top: hsla(225, 55%, 50%, 1) !important
+      --theme-color-secondary-bottom: hsla(225, 55%, 50%, 1) !important
+      --theme-color-bg: hsla(225, 45%, 35%, 1) !important
+      --t-m-bg: var(--t-bg-z1)
+      --t-bg-z0: hsla(0, 0%, 10%, 1)
+      --t-bg-z1: hsla(0, 0%, 15%, 1)
+      --t-bg-z2: hsla(0, 0%, 20%, 1)
+      --t-bg-c0: hsla(0, 0%, 85%, 1)
+      --t-bg-c1: hsla(0, 0%, 60%, 1)
+      --t-bg-c2: hsla(0, 0%, 45%, 1)
+      --t-p-c: hsla(0, 0%, 90%, 1)
+    else
+      --theme-color-primary-top: hsla(225, 45%, 50%, 1) !important
+      --theme-color-primary-bottom: hsla(225, 45%, 50%, 1) !important
+      --theme-color-secondary-top: hsla(225, 45%, 50%, 1) !important
+      --theme-color-secondary-bottom: hsla(225, 45%, 50%, 1) !important
+      --theme-color-bg: hsla(225, 45%, 45%, 1) !important
+      --t-m-bg: hsla(0, 0%, 92%, 1)
+      --t-bg-z0: hsla(235, 5%, 96%, 1)
+      --t-bg-z1: hsla(225, 0%, 100%, 1) 
+      --t-bg-z2: hsla(225, 0%, 100%, 1) 
+      --t-bg-c0: hsla(0, 0%, 7%, 1)
+      --t-bg-c1: hsla(0, 0%, 40%, 1)
+      --t-bg-c2: hsla(0, 0%, 60%, 1)
+      --t-p-c: hsla(0, 0%, 92%, 1)
+  
+  .text-color-high-emphasis 
+    color: var(--t-bg-c0) !important
+  .text-color-medium-emphasis
+    color: var(--t-bg-c1) !important
+  .text-color-low-emphasis
+    color: var(--t-bg-c2) !important
+  .text-color-primary
+    color: var(--theme-color-primary-top)
+  .text-color-secondary
+    color: var(--theme-color-secondary-top)
+  .mat-primary, mat-secondary
+    *
+      color: var(--t-p-c) !important
+    
+  if isDark
+    h1, h2, h3, h4, h5, h6, span
+      color: var(--t-bg-c1) !important
 
   @media only screen and (min-width: 1024px) 
     html 
@@ -48,12 +90,70 @@
 
   body 
     max-width: 1600px !important
+    color: var(--t-bg-c0) !important
     
   flip-file-chip-download a
     border-radius: 8px !important
 
-  flip-page.bg-default 
-    background: hsla(235, 5%, 96%, 1) !important
+  flip-page
+    background: var(--t-bg-z0) !important
+  
+  flip-top-bar
+    button.top-bar-right-button-widget__icon--fab span
+      color: var(--t-p-c) !important
+    .mat-toolbar
+      background: var(--t-bg-z1) !important
+      
+  .navigation-item
+    &.active
+      .navigation-item
+        &__icon, &__text
+          color: var(--theme-color-primary-top) !important
+    &:not(.active)
+      .navigation-item
+        &__icon, &__text
+          color: var(--t-bg-c2) !important
+          
+  // ***************************************
+  //
+  //           MENU
+  //
+  // ***************************************
+      
+  .menu-content
+    .flip-menu-card-icon-background__colored 
+      if isDark
+        background: var(--t-bg-z2) !important
+      
+    .menu-item-wrapper
+      --grid-gap: 16px
+      grid-gap: var(--grid-gap) !important
+      
+      flip-menu-card
+        border-radius: 12px !important
+        max-height: 148px
+        background: var(--t-bg-z1) !important
+        if isDark
+          &:not(:hover)
+            box-shadow: none !important
+          &:hover
+            box-shadow: 0 0 0 2px var(--theme-color-secondary-bottom)
+        &#burger-download, &#burger-feedback
+          display: none
+          
+      .flip-menu-card--wide
+        width: calc(2 * 200 + var(--grid-gap)) !important
+        
+    if !showLogoInMenu
+      padding-top: 24px
+      .menu-content__logo
+        display: none !important
+      
+  // ***************************************
+  //
+  //           POSTS
+  //
+  // ***************************************
 
   flip-post-feed 
     .post 
@@ -62,25 +162,11 @@
       &:not(:first-child)
         margin-top: 12px
     
-  .menu-content
-    .menu-item-wrapper
-      --grid-gap: 16px
-      grid-gap: var(--grid-gap) !important
-      .flip-menu-card
-        border-radius: 12px !important
-        max-height: 148px
-        &#burger-download, &#burger-feedback
-          display: none
-      .flip-menu-card--wide
-        width: calc(2 * 200 + var(--grid-gap)) !important
-    if !showLogoInMenu
-      padding-top: 24px
-      .menu-content__logo
-        display: none !important
     
 
   flip-post
     .post
+      background: var(--t-bg-z1) !important
       border-radius: 8px !important
       
     .post-article__like-count 
@@ -103,7 +189,37 @@
       button[data-cy="like-button"]
         display: none !important
         
+  // ***************************************
+  //
+  //           QUILL
+  //
+  // ***************************************
+        
+  .flip-ql-reader .ql-editor,
+  .flip-ql-writer .ql-editor,
+  .flip-ql-reader.ql-editor,
+  .flip-ql-writer.ql-editor
+    color: var(--t-bg-c0) !important
+    
+  .ql-editor.ql-blank::before
+    color: var(--t-bg-c1) !important
+    
+  // ***************************************
+  //
+  //           CHAT
+  //
+  // ***************************************
+  
+  .feed__dayseparator
+    background-color: var(--t-bg-z2) !important
+    if isDark
+      border-bottom: none !important
+      border-right: none !important
+      border-left: none !important
+    color: var(--t-bg-c1) !important
+  
   .footer-input
+    background: var(--t-bg-z2) !important
     box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12) !important
 
   flip-message
@@ -124,6 +240,22 @@
       border-radius: 8px !important
       box-shadow: none !important
       
+      &.message__bubble--from-me
+        background: var(--theme-color-bg) !important
+        .message__content
+          color: var(--t-p-c) !important
+      
+      &:not(.message__bubble--from-me) 
+        if !isDark
+          border: 1 solid hsla(225, 5%, 80%, 1) !important
+        background: var(--t-m-bg) !important
+        &.message__bubble--media
+          background: hsla(225, 2%, 90%, 1) !important
+        .message__content 
+          color: var(--t-bg-c0) !important
+        .message__timestamp
+          color: var(--t-bg-c1) !important
+      
       &.message__bubble--media
         padding: 2px !important
         .media-container
@@ -139,11 +271,3 @@
         padding: 6px 8px !important
         
 
-    .message__bubble:not(.message__bubble--from-me) 
-      border: 1px solid
-      color: hsla(225, 4%, 89%, 1) !important
-      background: hsla(225, 2%, 92%, 1) !important
-      &.message__bubble--media
-        background: hsla(225, 2%, 90%, 1) !important
-      .message__content 
-        color: hsla(225, 100%, 5%, 1) !important
