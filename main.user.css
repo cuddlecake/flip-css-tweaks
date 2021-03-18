@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.7
+@version        2021.3.8
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -13,6 +13,7 @@
 @var color themePrimary "Theme Primary Color" hsla(225, 45%, 45%, 1)
 @var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
 ==/UserStyle== */
+
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root 
     --theme-color-primary-top: themePrimary !important
@@ -54,14 +55,26 @@
   flip-page.bg-default 
     background: hsla(235, 5%, 96%, 1) !important
 
-  flip-post-feed .post 
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 20%), 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%) !important
+  flip-post-feed 
+    .post 
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 20%), 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%) !important
+    .feed__content
+      &:not(:first-child)
+        margin-top: 12px
     
   .menu-content
     .menu-item-wrapper
-      grid-gap: 12px !important
+      --grid-gap: 16px
+      grid-gap: var(--grid-gap) !important
+      .flip-menu-card
+        border-radius: 12px !important
+        max-height: 148px
+        &#burger-download, &#burger-feedback
+          display: none
+      .flip-menu-card--wide
+        width: calc(2 * 200 + var(--grid-gap)) !important
     if !showLogoInMenu
-      padding-top: 16px
+      padding-top: 24px
       .menu-content__logo
         display: none !important
     
