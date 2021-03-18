@@ -1,9 +1,11 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.6
+@version        2021.3.7
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
+@homepageURL    https://github.com/cuddlecake/flip-css-tweaks
+@updateURL      https://cuddlecake.github.io/flip-css-tweaks/main.user.css
 @preprocessor   stylus
 
 @var checkbox showLikes "Likes Enabled" 1
@@ -82,6 +84,15 @@
         display: none !important
 
   flip-chat flip-message 
+    .message__user-name
+      display: inline
+      margin-top: 0 !important
+      text-decoration: underline
+      text-decoration-color: transparent !important
+      transition: text-decoration-color ease-in-out 100ms
+      &:hover
+        text-decoration-color: initial !important
+        
     .message__bubble 
       border-radius: 8px !important
       box-shadow: none !important
