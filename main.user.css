@@ -12,7 +12,7 @@
 @var checkbox showLogoInMenu "Show Logo in Menu" 0
 @var color themePrimary "Theme Primary Color" hsla(225, 45%, 45%, 1)
 @var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
-@var checkbox isDark "Activate Dark Theme" 0
+@var checkbox isDark "Activate Dark Theme" 1
 ==/UserStyle== */
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root
