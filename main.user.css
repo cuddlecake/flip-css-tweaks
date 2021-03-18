@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.8
+@version        2021.3.9
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -79,12 +79,19 @@
         display: none !important
     
 
-  flip-post 
+  flip-post
+    .post
+      border-radius: 8px !important
+      
     .post-article__like-count 
       if !showLikes 
         display: none !important
         button[data-cy="like-button"] 
           display: none !important
+          
+    .post-article
+      .read-more
+        padding-bottom: 0 !important
     
     if !showLikes 
       .post-footer 
@@ -95,8 +102,15 @@
       
       button[data-cy="like-button"]
         display: none !important
+        
+  .footer-input
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12) !important
 
-  flip-chat flip-message 
+  flip-message
+    flip-user-avatar
+      box-shadow: none !important
+      .border-shadow
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 10%) !important
     .message__user-name
       display: inline
       margin-top: 0 !important
