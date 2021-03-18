@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.10
+@version        2021.3.11
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -15,8 +15,10 @@
 @var checkbox isDark "Activate Dark Theme" 0
 ==/UserStyle== */
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
-  :root 
+  :root
     if isDark
+      color-scheme: dark 
+      --html-bg: rgba(50, 50, 50, 5%)
       --theme-color-primary-top: hsla(225, 55%, 50%, 1) !important
       --theme-color-primary-bottom: hsla(225, 55%, 50%, 1) !important
       --theme-color-secondary-top: hsla(225, 55%, 50%, 1) !important
@@ -31,6 +33,7 @@
       --t-bg-c2: hsla(0, 0%, 45%, 1)
       --t-p-c: hsla(0, 0%, 90%, 1)
     else
+      --html-bg: rgba(0, 0, 0, 80%)
       --theme-color-primary-top: hsla(225, 45%, 50%, 1) !important
       --theme-color-primary-bottom: hsla(225, 45%, 50%, 1) !important
       --theme-color-secondary-top: hsla(225, 45%, 50%, 1) !important
@@ -68,7 +71,8 @@
       max-width: 1200px
       margin-left: auto
       margin-right: auto
-      background: rgba(0, 0, 0, 0.8)
+      background: var(--html-bg)
+        
 
     .combined-view 
       position: initial
@@ -270,4 +274,3 @@
       &.message__bubble--text
         padding: 6px 8px !important
         
-
