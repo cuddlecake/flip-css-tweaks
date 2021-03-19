@@ -1,7 +1,6 @@
-/* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
-@version        2021.3.12
+@version        2021.3.13
 @description    CSS Tweaks for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -12,13 +11,13 @@
 @var checkbox showLogoInMenu "Show Logo in Menu" 0
 @var color themePrimary "Theme Primary Color" hsla(225, 45%, 45%, 1)
 @var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
-@var checkbox isDark "Activate Dark Theme" 1
+@var checkbox isDark "Activate Dark Theme" 0
 ==/UserStyle== */
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root
     if isDark
       color-scheme: dark 
-      --html-bg: rgba(50, 50, 50, 5%)
+      background: hsla(0, 0%, 8%, 1) !important
       --theme-color-primary-top: hsla(225, 55%, 50%, 1) !important
       --theme-color-primary-bottom: hsla(225, 55%, 50%, 1) !important
       --theme-color-secondary-top: hsla(225, 55%, 50%, 1) !important
@@ -31,9 +30,10 @@
       --t-bg-c0: hsla(0, 0%, 85%, 1)
       --t-bg-c1: hsla(0, 0%, 60%, 1)
       --t-bg-c2: hsla(0, 0%, 45%, 1)
+      --t-bg-c3: hsla(0, 0%, 25%, 1)
       --t-p-c: hsla(0, 0%, 90%, 1)
     else
-      --html-bg: rgba(0, 0, 0, 80%)
+      background: hsla(0, 0%, 25%, 1) !important
       --theme-color-primary-top: hsla(225, 45%, 50%, 1) !important
       --theme-color-primary-bottom: hsla(225, 45%, 50%, 1) !important
       --theme-color-secondary-top: hsla(225, 45%, 50%, 1) !important
@@ -65,14 +65,15 @@
   if isDark
     h1, h2, h3, h4, h5, h6, span
       color: var(--t-bg-c1) !important
+    .mat-badge-content
+      border-color: var(--t-bg-z2) !important
+      color: var(--t-bg-c0) !important
 
   @media only screen and (min-width: 1024px) 
     html 
       max-width: 1200px
       margin-left: auto
       margin-right: auto
-      background: var(--html-bg)
-        
 
     .combined-view 
       position: initial
@@ -91,6 +92,22 @@
 
       .mat-dialog-container 
         border-radius: 8px
+        
+  .avatar__letters
+    color: hsla(0, 0%, 10%, 100%) !important
+    
+  .image-preview
+    background: var(--t-bg-z0) !important
+        
+  mat-divider[role="separator"]
+    border-top-color: var(--t-bg-z2) !important
+    
+    
+  flip-search-input
+    input
+      background: var(--t-bg-z0) !important
+      border-radius: 8px
+      color: var(--t-bg-c0) !important
 
   body 
     max-width: 1600px !important
@@ -165,8 +182,6 @@
     .feed__content
       &:not(:first-child)
         margin-top: 12px
-    
-    
 
   flip-post
     .post
@@ -225,6 +240,12 @@
   .footer-input
     background: var(--t-bg-z2) !important
     box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12) !important
+    
+  .action-sheet
+    background: var(--t-bg-z1) !important
+    .action__icon-wrapper
+      if isDark
+        color: var(--t-bg-c3) !important
 
   flip-message
     flip-user-avatar
