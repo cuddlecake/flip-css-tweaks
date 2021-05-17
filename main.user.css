@@ -1,3 +1,4 @@
+/* ==UserStyle==
 @name           Flip App Tweaks
 @namespace      github.com/openstyles/stylus
 @version        2021.3.13
@@ -13,6 +14,7 @@
 @var color themeAccent "Theme Accent Color" hsla(225, 45%, 45%, 1)
 @var checkbox isDark "Activate Dark Theme" 0
 ==/UserStyle== */
+
 @-moz-document regexp("^https://.*\\.flipnext.de/.*") 
   :root
     if isDark
