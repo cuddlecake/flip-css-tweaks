@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Theming
 @namespace      github.com/openstyles/stylus
-@version        2021.6.1
+@version        2021.6.2
 @description    CSS Theming for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -45,3 +45,22 @@
     if useCustomBgImage
       --bg-image: url(bgUrl)
       
+  flip-post .post
+    background: var(--bg-2) !important
+    
+  .flip-list.mat-list-base.flip-list-card
+    background: var(--bg-2) !important
+    
+  .flip-menu-card
+    background: var(--bg-2) !important
+    
+  .flip-list.mat-list-base 
+    .mat-list-item.active, .mat-list-item:hover
+      background-color: var(--bg-3) !important
+    
+  .mat-list-item:hover
+    background: var(--bg-3) !important
+    
+  .search-input .search-input__background
+    background: var(--bg-3) !important
+
