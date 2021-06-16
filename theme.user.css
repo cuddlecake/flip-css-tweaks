@@ -1,0 +1,47 @@
+/* ==UserStyle==
+@name           Flip App Theming
+@namespace      github.com/openstyles/stylus
+@version        2021.6.1
+@description    CSS Theming for Flip App
+@author         Alexander Sawtschuk (@cuddlecake)
+@homepageURL    https://github.com/cuddlecake/flip-css-tweaks
+@updateURL      https://cuddlecake.github.io/flip-css-tweaks/theme.user.css
+@preprocessor stylus
+
+@var color primary "Theme Primary Color" hsla(225, 45%, 45%, 1)
+@var color secondary "Theme Secondary Color" hsla(225, 45%, 45%, 1)
+@var color onPrimary "Text on Primary Color" white
+@var color onSecondary "Text on Secondary Color" white
+@var color bg1 "Primary Background" white
+@var color bg2 "Secondary Background" white
+@var color bg3 "Tertiary Background" white
+@var color highEmphasis "High Emphasis Text" #212121
+@var color mediumEmphasis "Medium Emphasis Text" #666666
+@var color lowEmphasis "Low Emphasis Text" #9e9e9e
+@var color disabledColor "Disabled Text" #e2e2e2
+@var checkbox useCustomBgImage "Use Custom BG Image" 0
+@var text bgUrl "Background URL (in newsfeed, groupfeed, messages)" "'BubblePattern.svg'"
+@var checkbox isDark "Activate Dark Theme" 0
+
+==/UserStyle== */
+
+@-moz-document domain("flip-app.dev"), domain("localhost"), domain("staging.flipnext.de") 
+  :root
+    if isDark
+      color-scheme: dark
+      
+    --theme-color-primary-top: primary !important
+    --theme-color-primary-bottom: primary !important
+    --theme-color-secondary-top: secondary !important
+    --theme-color-secondary-bottom: secondary !important
+    --text-on-primary: onPrimary !important
+    --text-on-secondary: onSecondary !important
+    --text-high-emphasis: highEmphasis !important
+    --text-medium-emphasis: mediumEmphasis !important
+    --text-low-emphasis: lowEmphasis !important
+    --bg-1: bg1 !important
+    --bg-2: bg2 !important
+    --bg-3: bg3 !important
+    if useCustomBgImage
+      --bg-image: url(bgUrl)
+      
