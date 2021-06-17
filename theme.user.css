@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Flip App Theming
 @namespace      github.com/openstyles/stylus
-@version        2021.6.2
+@version        2021.6.4
 @description    CSS Theming for Flip App
 @author         Alexander Sawtschuk (@cuddlecake)
 @homepageURL    https://github.com/cuddlecake/flip-css-tweaks
@@ -18,14 +18,16 @@
 @var color highEmphasis "High Emphasis Text" #212121
 @var color mediumEmphasis "Medium Emphasis Text" #666666
 @var color lowEmphasis "Low Emphasis Text" #9e9e9e
-@var color disabledColor "Disabled Text" #e2e2e2
+@var color disabled "Disabled Text" #e2e2e2
 @var checkbox useCustomBgImage "Use Custom BG Image" 0
 @var text bgUrl "Background URL (in newsfeed, groupfeed, messages)" "'BubblePattern.svg'"
-@var checkbox isDark "Activate Dark Theme" 0
+@var checkbox isDark "Is Dark Theme" 0
 
 ==/UserStyle== */
 
 @-moz-document domain("flip-app.dev"), domain("localhost"), domain("staging.flipnext.de") 
+  $darkshadow3 = 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12) 
+  
   :root
     if isDark
       color-scheme: dark
@@ -39,28 +41,76 @@
     --text-high-emphasis: highEmphasis !important
     --text-medium-emphasis: mediumEmphasis !important
     --text-low-emphasis: lowEmphasis !important
+    --text-disabled: disabled !important
     --bg-1: bg1 !important
     --bg-2: bg2 !important
     --bg-3: bg3 !important
+    --message-bubble: var(--bg-3)
     if useCustomBgImage
       --bg-image: url(bgUrl)
+        
+  if false
+    flip-post .post, .flip-menu-card:not(:hover, :focus), .message__bubble
+      box-shadow: $darkshadow3 !important
+    .flip-content.with-inset-shadow::before
+      box-shadow: inset $darkshadow3 !important
       
+  .top-bar
+    background-color: var(--bg-2) !important
+      
+  body
+    background: var(--bg-1) url(Bubble_Pattern.92ba9c94651f5e3c3f48.svg) center / cover no-repeat
+    
   flip-post .post
     background: var(--bg-2) !important
     
   .flip-list.mat-list-base.flip-list-card
     background: var(--bg-2) !important
+  .flip-list.mat-list-base:not(.flip-list-card) .mat-list-item-with-avatar .mat-list-icon
+    background: var(--bg-3) !important
+  .mat-list-text
+    color: var(--text-high-emphasis)
     
   .flip-menu-card
     background: var(--bg-2) !important
+    
+  .flip-menu-card-icon-background__colored
+    background: var(--bg-3) !important
+    
+  .message__bubble:not(.by-actor)
+    background-color: var(--message-bubble)
     
   .flip-list.mat-list-base 
     .mat-list-item.active, .mat-list-item:hover
       background-color: var(--bg-3) !important
     
-  .mat-list-item:hover
-    background: var(--bg-3) !important
-    
   .search-input .search-input__background
     background: var(--bg-3) !important
-
+    
+  .base-table-content
+    background-color: var(--bg-2) !important
+    
+  .mat-table
+    background-color: var(--bg-2) !important
+    
+  .mat-drawer-content
+    background-color: var(--bg-1) !important
+    
+  .flip-top-bar-title-widget 
+    color: var(--text-high-emphasis) !important
+    
+  .bottom-nav
+    background-color: var(--bg-2) !important
+    
+  .navigation-item, .bottom-nav-item
+    :not(.active *)
+      color: var(--text-low-emphasis) !important
+  
+  .footer-input
+    background-color: var(--bg-3) !important
+    
+  .ql-editor.ql-blank:before
+    color: var(--text-low-emphasis)
+    
+  .search-input input::placeholder, .search-input__clear-icon, .search-input__search-icon 
+    color: var(--text-low-emphasis) !important
