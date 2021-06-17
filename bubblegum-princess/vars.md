@@ -11,4 +11,5 @@
 --bg-1: #ffbdeb !important;
 --bg-2: #ffccef !important;
 --bg-3: #ffdbf9 !important;
+--bg-image: url(https://cuddlecake.github.io/flip-css-tweaks/bubblegum-princess/glitter.png)
 ```
