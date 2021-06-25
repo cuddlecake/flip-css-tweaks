@@ -8,6 +8,13 @@
 @updateURL      https://cuddlecake.github.io/flip-css-tweaks/theme.user.css
 @preprocessor stylus
 
+
+@var select theme "Pre-Defined Themes" [
+    "vanilla*" ,
+    "bubblegum",
+    "fb-dark",
+    "custom"
+]
 @var color primary "Theme Primary Color" hsla(225, 45%, 45%, 1)
 @var color secondary "Theme Secondary Color" hsla(225, 45%, 45%, 1)
 @var color onPrimary "Text on Primary Color" white
@@ -29,27 +36,60 @@
   $darkshadow3 = 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12) 
   
   :root
-    if isDark
-      color-scheme: dark
-      
-    --theme-color-primary-top: primary !important
-    --theme-color-primary-bottom: primary !important
-    --theme-color-secondary-top: secondary !important
-    --theme-color-secondary-bottom: secondary !important
-    --text-on-primary: onPrimary !important
-    --text-on-secondary: onSecondary !important
-    --text-high-emphasis: highEmphasis !important
-    --text-medium-emphasis: mediumEmphasis !important
-    --text-low-emphasis: lowEmphasis !important
-    --text-disabled: disabled !important
-    --bg-1: bg1 !important
-    --bg-2: bg2 !important
-    --bg-3: bg3 !important
-    --message-bubble: var(--bg-3)
-    if useCustomBgImage
-      --bg-image: url(bgUrl)
+    if theme == "bubblegum"
+      --theme-color-primary-top: #870d75 !important
+      --theme-color-primary-bottom: #870d75 !important
+      --theme-color-secondary-top: #ea2e4a !important
+      --theme-color-secondary-bottom: #ea2e4a !important
+      --text-on-primary: #f33fcf !important
+      --text-on-secondary: #fff !important
+      --text-high-emphasis: #212121 !important
+      --text-medium-emphasis: #666 !important
+      --text-low-emphasis: #9e9e9e !important
+      --bg-1: #ffbdeb !important
+      --bg-2: #ffccef !important
+      --bg-3: #ffdbf9 !important
+      --message-bubble: var(--bg-3)
+      --bg-image: url(https://cuddlecake.github.io/flip-css-tweaks/bubblegum-princess/glitter.png)
         
-  if false
+    if theme == "fb-dark"
+      color-scheme: dark
+      --theme-color-primary-top: #45c0b2 !important
+      --theme-color-primary-bottom: #45c0b2 !important
+      --theme-color-secondary-top: #aa558c !important
+      --theme-color-secondary-bottom: #aa558c !important
+      --text-on-primary: #000 !important
+      --text-on-secondary: #fff !important
+      --text-high-emphasis: #fff !important
+      --text-medium-emphasis: #c9c9c9 !important
+      --text-low-emphasis: #989898 !important
+      --text-disabled: #878787 !important
+      --bg-1: #18191b !important
+      --bg-2: #242527 !important
+      --bg-3: #3a3b3d !important
+      --message-bubble: var(--bg-3)
+        
+    if theme == "custom"
+      if isDark
+        color-scheme: dark
+      --theme-color-primary-top: primary !important
+      --theme-color-primary-bottom: primary !important
+      --theme-color-secondary-top: secondary !important
+      --theme-color-secondary-bottom: secondary !important
+      --text-on-primary: onPrimary !important
+      --text-on-secondary: onSecondary !important
+      --text-high-emphasis: highEmphasis !important
+      --text-medium-emphasis: mediumEmphasis !important
+      --text-low-emphasis: lowEmphasis !important
+      --text-disabled: disabled !important
+      --bg-1: bg1 !important
+      --bg-2: bg2 !important
+      --bg-3: bg3 !important
+      --message-bubble: var(--bg-3)
+      if useCustomBgImage
+        --bg-image: url(bgUrl)
+        
+  if isDark
     flip-post .post, .flip-menu-card:not(:hover, :focus), .message__bubble
       box-shadow: $darkshadow3 !important
     .flip-content.with-inset-shadow::before
@@ -58,8 +98,8 @@
   .top-bar
     background-color: var(--bg-2) !important
       
-  body
-    background: var(--bg-1) url(Bubble_Pattern.92ba9c94651f5e3c3f48.svg) center / cover no-repeat
+  html, body
+    background: var(--bg-1) !important
     
   flip-post .post
     background: var(--bg-2) !important
@@ -96,6 +136,10 @@
   .mat-drawer-content
     background-color: var(--bg-1) !important
     
+  .feed__dayseparator
+    background: var(--bg-3) !important
+    color: var(--text-medium-emphasis) !important
+    
   .flip-top-bar-title-widget 
     color: var(--text-high-emphasis) !important
     
@@ -109,8 +153,14 @@
   .footer-input
     background-color: var(--bg-3) !important
     
+  .footer-input__send .mat-icon
+    color: var(--text-on-primary) !important
+    
   .ql-editor.ql-blank:before
     color: var(--text-low-emphasis)
     
   .search-input input::placeholder, .search-input__clear-icon, .search-input__search-icon 
     color: var(--text-low-emphasis) !important
+    
+  .mat-toolbar
+    color: var(--text-high-emphasis)
